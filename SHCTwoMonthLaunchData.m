@@ -87,14 +87,26 @@ h_a = animatedline('Color','#77AC30');
 y_a = newdataArray(:,5);
 ylim([-10, 300])
 
+pause(3)  % give time to adjust window
+
+% save animated graph as video
+video = VideoWriter('SHC TwoMonth Flight Data Visualization.avi');
+video.Quality = 100;
+video.FrameRate = 10;
+open(video);
+
 % add points to function and live graph
-for k = 1:length(x) % k = 425:575 for cropped data isolating flight time
+for k = 425:575 % 1:length(x) for uncropped data
     addpoints(h_p,x(k),y_p(k));
     addpoints(h_t,x(k),y_t(k));
     addpoints(h_h,x(k),y_h(k));
     addpoints(h_a,x(k),y_a(k));
-    pause(0.1) % approximate interval between points drawn
     drawnow
+    f = getframe(gcf);
+    writeVideo(video, f);
+    pause(0.1) % approximate interval between points drawn
 end
+
+video.close()
 
 % savefig('SHC TwoMonth Team 10 Data.fig')
