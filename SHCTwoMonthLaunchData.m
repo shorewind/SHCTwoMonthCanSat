@@ -1,6 +1,5 @@
 % space hardware club twomonth fall 2021
 % team 10 launch data and animated graphs
-
 clc; clear; close all;
 
 % import data
@@ -109,4 +108,5 @@ end
 
 video.close()
 
-% savefig('SHC TwoMonth Team 10 Data.fig')
+savefig('SHC TwoMonth Flight Data.fig')
+saveas(gcf, 'SHC TwoMonth Flight Data.png')
